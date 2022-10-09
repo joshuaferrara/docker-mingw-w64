@@ -167,17 +167,5 @@ RUN set -ex \
     && rm -r nasm-${NASM_VERSION} \
     \
     && apt-get remove --purge -y file gcc g++ zlib1g-dev libssl-dev libgmp-dev libmpfr-dev libmpc-dev libisl-dev \
-    \
-    && apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/3bf863cc.pub \
-    && echo "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/ /" > /etc/apt/sources.list.d/cuda.list \
-    && apt-get update \
-    \
-    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-        cuda-nvcc-${NVCC_VERSION:0:2}-${NVCC_VERSION:3:1} \
-    \
-    && ln -s /usr/bin/gcc /usr/local/cuda/bin/gcc \
-    && ln -s /usr/bin/g++ /usr/local/cuda/bin/g++ \
-    \
-    && apt-get remove --purge -y gnupg \
     && apt-get autoremove --purge -y \
     && apt-get clean
